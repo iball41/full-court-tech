@@ -58,9 +58,8 @@ a{color:inherit;text-decoration:none}
 .stat-label{font-size:10px;color:var(--gray-400);letter-spacing:.06em;text-transform:uppercase}
 
 /* FILTER BAR */
-.filter-bar{background:var(--white);border-bottom:1px solid var(--gray-100);padding:0 2.5rem;position:sticky;top:56px;z-index:90;display:flex;align-items:center}
-.filter-bar-wrap{display:flex;align-items:center;background:var(--white);border-bottom:1px solid var(--gray-100);padding:0 2.5rem;position:sticky;top:56px;z-index:90}
-.filter-bar-inner{max-width:960px;flex:1;margin:0 auto;display:flex;align-items:center;overflow-x:auto;scrollbar-width:none;padding:10px 0;gap:0}
+.filter-bar{background:var(--white);border-bottom:1px solid var(--gray-100);padding:0 2.5rem;position:sticky;top:56px;z-index:90}
+.filter-bar-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;overflow-x:auto;scrollbar-width:none;padding:10px 0;gap:0}
 .filter-bar-inner::-webkit-scrollbar{display:none}
 .filter-group{display:flex;gap:0;align-items:center;flex-shrink:0}
 .filter-divider{width:1px;height:18px;background:var(--gray-100);margin:0 14px;flex-shrink:0}
@@ -123,32 +122,6 @@ a{color:inherit;text-decoration:none}
 .who.on{background:var(--black);color:var(--white);border-color:var(--black)}
 
 .card-divider{height:1px;background:var(--gray-100)}
-
-/* EXPANDED CARD STATE */
-.card-expanded-detail{display:none;flex-direction:column;gap:10px;margin-top:2px}
-.cards-grid.expanded-mode .card-expanded-detail{display:flex}
-.cards-grid.expanded-mode .card{cursor:default}
-.cards-grid.expanded-mode .card:hover{background:var(--white)}
-.cards-grid.expanded-mode .card-hint{display:none}
-.card-exp-divider{height:1px;background:var(--gray-100)}
-.card-exp-label{font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-400);margin-bottom:4px}
-.card-exp-features{list-style:none;display:flex;flex-direction:column;gap:5px}
-.card-exp-features li{font-size:11px;color:var(--gray-600);line-height:1.5;padding-left:14px;position:relative}
-.card-exp-features li::before{content:'→';position:absolute;left:0;font-size:9px;color:var(--gray-200);top:3px}
-.card-exp-insight{border-left:2px solid var(--teal-mid);padding:8px 12px;background:var(--teal-light);border-radius:0 6px 6px 0}
-.card-exp-insight-label{font-size:9px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:4px}
-.card-exp-insight-text{font-family:'DM Serif Display',serif;font-size:12px;color:var(--gray-600);line-height:1.65;font-style:italic}
-.card-exp-usedby{display:flex;flex-wrap:wrap;gap:4px}
-.card-exp-chip{font-size:10px;padding:2px 8px;border-radius:20px;background:var(--gray-50);border:1px solid var(--gray-100);color:var(--gray-600)}
-
-/* EXPAND ALL BUTTON — desktop only */
-.expand-toggle{display:none}
-
-/* HELPER TEXT + INLINE EXPAND LINK */
-.dir-helper{font-size:12px;color:var(--gray-400);margin-bottom:2rem;line-height:1.5}
-.expand-link{font-size:12px;color:var(--accent);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;padding:0;text-decoration:underline;text-underline-offset:2px;transition:opacity .15s}
-.expand-link:hover{opacity:.7}
-.expand-link.active{font-weight:500}
 
 /* RELATIONSHIP ROW */
 .rel-row{display:flex;flex-direction:column;gap:4px}
@@ -290,8 +263,7 @@ a{color:inherit;text-decoration:none}
   .pipeline-row{grid-template-columns:1fr}
   .mm-intro{grid-template-columns:1fr}
   .level-header{grid-template-columns:48px 1fr}
-  .level-budget{text-align:left;margin-top:6px}
-  .level-header{flex-wrap:wrap}
+  .level-budget{display:none}
   .stat-row{gap:1.5rem}
   .nav-meta{display:none}
   .overlay-panel{padding:1.5rem;border-radius:12px}
@@ -329,7 +301,7 @@ a{color:inherit;text-decoration:none}
       <div class="dir-hero-byline">by Imani Dunbar</div>
       <p class="dir-hero-sub">A curated guide to the basketball technology landscape — organized by what each tool does, who uses it, and how elite programs connect them into a single workflow. Tap any card to explore.</p>
       <div class="stat-row">
-        <div class="stat"><div class="stat-num">16</div><div class="stat-label">Core tools</div></div>
+        <div class="stat"><div class="stat-num">17</div><div class="stat-label">Core tools</div></div>
         <div class="stat"><div class="stat-num">7</div><div class="stat-label">Functional layers</div></div>
         <div class="stat"><div class="stat-num">5</div><div class="stat-label">Levels of play</div></div>
       </div>
@@ -361,8 +333,6 @@ a{color:inherit;text-decoration:none}
         <button class="vtbtn" onclick="setView('semantic')">Semantic</button>
       </div>
     </div>
-    <button class="expand-toggle" id="expand-toggle-old" style="display:none">
-    </button>
   </div>
 
   <div class="legend-strip">
@@ -378,8 +348,6 @@ a{color:inherit;text-decoration:none}
 
   <div class="dir-content">
 
-    <div class="dir-helper">Tap any card to explore. On desktop, you can also <button class="expand-link" id="expand-toggle" onclick="toggleExpandAll()">expand all</button>.</div>
-
     <div class="section-row"><span class="section-num">01</span><span class="section-title">Individual player development</span><div class="section-line"></div></div>
     <div class="cards-grid">
       <div class="card" data-layers="allinone" data-who="youth hs college"
@@ -390,7 +358,7 @@ a{color:inherit;text-decoration:none}
         data-sem-pills='<span class="lp lp-optical">Optical / Visual</span>'
         data-who-html='<span class="who on">Youth</span><span class="who on">High school</span><span class="who on">College</span><span class="who">Pro</span><span class="who">Olympic</span>'
         data-features="Phone camera captures shots, dribbling, and movement — no equipment or sensors needed|Real-time metrics: arc, release time, speed, and ball-handling per session|NBA-backed skill ratings and guided workouts taught by pro athletes including Steve Nash and Sue Bird|Progress tracking over time, global challenges, and community leaderboards for competitive motivation|Official NBA partner — connects players and their development data directly to the league"
-        data-usedby="NBA (official partner)|USA Basketball|Kevin Durant, Jayson Tatum (personal training)|Thousands of AAU programs nationwide"
+        data-usedby="NBA (official partner — nba.com press release, 2019)|Youth programs worldwide via NBA youth development initiatives"
         data-insight="The rare fully self-contained loop — capture, analyze, and output all happen on one device. For individual players without access to institutional tools, HomeCourt is the entire stack. For AD budget planning, it's also the lowest-cost entry point to data-driven player development."
         data-interchangeable="" data-pairs-with="Noah Basketball (shooting mechanics layer)" data-scales-to="ShotTracker (when team-level live data is needed)">
         <div class="card-top">
@@ -417,8 +385,8 @@ a{color:inherit;text-decoration:none}
         data-func-pills='<span class="lp lp-capture">Capture</span><span class="lp lp-analytics">Analytics</span>'
         data-sem-pills='<span class="lp lp-biomech">Biomechanical</span>'
         data-who-html='<span class="who">Youth</span><span class="who on">High school</span><span class="who on">College</span><span class="who on">Pro</span><span class="who">Olympic</span>'
-        data-features="Sensor mounted 13 ft above the rim — no wearables or manual input ever required|Captures arc, depth, and left-right deviation on every single shot automatically and instantly|Targets the scientifically proven optimal: 45° arc and 11 inches deep into the rim|Instant audio and visual feedback after every rep — players self-correct form in real time|Noahlytics dashboard tracks mechanical trends and shooting progress across sessions over time"
-        data-usedby="Golden State Warriors|Memphis Grizzlies|Duke Blue Devils|Kentucky Wildcats|Gonzaga Bulldogs|UConn Huskies"
+        data-features="Sensor mounted 13 ft above the rim — no wearables or manual input ever required|Captures arc, depth, and left-right deviation on every single shot automatically and instantly|Targets the scientifically proven optimal: 45° arc and 11 inches deep into the rim|Instant audio and visual feedback after every rep — players self-correct form in real time|Installed in 93% of NBA facilities, used across WNBA, G League, and 200+ NCAA programs (noahbasketball.com, 2024)"
+        data-usedby="93% of NBA facilities (Noah Basketball published figure, 2024)|WNBA and G League teams|200+ NCAA programs"
         data-insight="Elite programs cross-reference Noah shooting data with Synergy video to understand why a shot is off — is it a mechanical issue (arc, depth) or contextual (defender contest, fatigue late in a game)? Noah answers the first question; Synergy answers the second. That combination turns a frustrating miss into a coachable, data-backed conversation."
         data-interchangeable="KINEXON COMPETE Vision (camera-based shot tracking alternative)" data-pairs-with="Synergy Sports (mechanical vs contextual cross-reference), ShotTracker (practice-to-game shooting loop)" data-scales-to="—">
         <div class="card-top">
@@ -449,7 +417,7 @@ a{color:inherit;text-decoration:none}
         data-sem-pills='<span class="lp lp-optical">Optical / Visual</span>'
         data-who-html='<span class="who">Youth</span><span class="who on">High school</span><span class="who on">College</span><span class="who on">Pro</span><span class="who">Olympic</span>'
         data-features="Permanently mounted in your gym or stadium — records every game and practice automatically|AI player and ball tracking, 180° panoramic HD coverage, no cameraman or operator ever needed|Auto-uploads all footage directly to Hudl immediately after every session ends without staff input|Livestreams directly to Hudl TV for fans, families, and recruiting audiences from any device|Native entry point that feeds Hudl Assist, Sportscode, and Instat pipelines downstream"
-        data-usedby="7,000+ high school programs|400+ college programs|Creighton Bluejays|Xavier Musketeers|St. John's Red Storm"
+        data-usedby="7,000+ high school programs (Hudl published figure)|400+ college programs (Hudl published figure)"
         data-insight="Focus is the entry point to the entire Hudl pipeline. Once installed, it feeds Hudl Assist (human breakdown), Sportscode (custom coach analysis), and Instat (advanced scouting) — all without a staff member ever touching a camera. For ADs, a single Focus installation effectively replaces the need for a video coordinator at the capture layer."
         data-interchangeable="Hudl Focus Flex (portable version for away venues)" data-pairs-with="Hudl Assist (automated breakdown), Hudl Sportscode (custom analysis)" data-scales-to="—">
         <div class="card-top">
@@ -477,7 +445,7 @@ a{color:inherit;text-decoration:none}
         data-sem-pills='<span class="lp lp-optical">Optical / Visual</span>'
         data-who-html='<span class="who on">Youth</span><span class="who on">High school</span><span class="who on">College</span><span class="who">Pro</span><span class="who">Olympic</span>'
         data-features="Tripod-mounted, deploys anywhere in minutes — zero permanent installation required|AI tracking automatically follows the action, no operator or cameraman ever needed on-site|Built-in 4G data enables live streaming from any away venue without Wi-Fi dependency|Instant upload to Hudl — footage is ready for review before the gear comes off after the game|Same downstream pipeline access as Focus Indoor: Assist, Sportscode, and Instat"
-        data-usedby="AAU travel programs nationwide|JUCO programs|State championship–level high schools|Small-college D2 and D3 programs"
+        data-usedby="High school and club programs within the Hudl ecosystem"
         data-insight="Club and travel programs use Flex to get the same Hudl pipeline quality at away venues — footage feeds Hudl Assist for post-game breakdown just like a permanently mounted camera would. For ADs managing programs without a fixed home facility, it's the great equalizer that gives mid-level programs access to institutional-quality capture workflows."
         data-interchangeable="Hudl Focus Indoor (permanent version for home venues)" data-pairs-with="Hudl Assist (automated breakdown)" data-scales-to="Hudl Focus Indoor (when program establishes a permanent home facility)">
         <div class="card-top">
@@ -504,11 +472,11 @@ a{color:inherit;text-decoration:none}
         data-func-pills='<span class="lp lp-capture">Capture</span><span class="lp lp-analytics">Analytics</span>'
         data-sem-pills='<span class="lp lp-optical">Optical / Visual</span><span class="lp lp-biomech">Biomechanical</span>'
         data-who-html='<span class="who">Youth</span><span class="who">High school</span><span class="who on">College</span><span class="who on">Pro</span><span class="who on">Olympic</span>'
-        data-features="Official NBA tracking provider since 2023-24 season — replaced Second Spectrum's center-of-mass system|Full 3D pose tracking: 29 body data points per player at 60 frames per second with sub-second latency|Captures every player, ball, and referee location simultaneously across the entire court at all times|Enables officiating enhancements: automated out-of-bounds and goaltending calls being developed for future seasons|Powers broadcast AR overlays and immersive fan analytics experiences via NBA League Pass"
-        data-usedby="All 30 NBA teams (official provider)|FIBA World Cup venues|EuroLeague elite venues"
+        data-features="Official NBA in-game optical tracking provider since 2023-24 — Second Spectrum remains for broadcast augmentation and team analytics (NBA press release, March 2023)|Full 3D pose tracking: 29 body data points per player at 60 frames per second with sub-second latency|Captures every player, ball, and referee location simultaneously across the entire court at all times|Enables officiating enhancements: automated out-of-bounds and goaltending calls being developed for future seasons|Powers broadcast AR overlays and immersive fan analytics experiences via NBA League Pass"
+        data-usedby="All 30 NBA teams — official optical tracking provider since 2023-24 (NBA press release, March 2023)|FIBA international venues"
         data-sportvu="SportVU (STATS LLC) pioneered NBA-wide optical tracking from 2013–17, proving the category's value before Second Spectrum took over (2017–23) and Hawk-Eye became the current standard. The analytical vocabulary SportVU introduced — speed profiles, paint touches, defensive matchups, court coverage maps — is the language every program still uses today."
         data-insight="Hawk-Eye represents a generational leap over prior tracking systems. Where Second Spectrum tracked a single center-of-mass point per player, Hawk-Eye tracks 29 body points — meaning teams can now analyze jump mechanics, landing angles, and movement efficiency in ways that directly inform injury prevention and conditioning decisions, not just tactical analysis."
-        data-interchangeable="Second Spectrum (prior NBA provider — now handles broadcast analytics layer)" data-pairs-with="Sportradar (official data distribution), Synergy Sports (play-type analytics layer)" data-scales-to="—">
+        data-interchangeable="Second Spectrum (co-exists in NBA ecosystem — handles broadcast augmentation and team analytics)" data-pairs-with="Sportradar (official data distribution), Synergy Sports (play-type analytics layer)" data-scales-to="—">
         <div class="card-top">
           <div class="card-brand">
             <div class="card-icon" style="background:#eeedfe"><svg width="16" height="16" fill="none" stroke="#534ab7" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg></div>
@@ -519,6 +487,33 @@ a{color:inherit;text-decoration:none}
         <div class="layer-pills func-pills"><span class="lp lp-capture">Capture</span><span class="lp lp-analytics">Analytics</span></div>
         <div class="layer-pills sem-pills" style="display:none"><span class="lp lp-optical">Optical / Visual</span><span class="lp lp-biomech">Biomechanical</span></div>
         <div class="who-row"><span class="who on">College</span><span class="who on">Pro</span><span class="who on">Olympic</span></div>
+        <div class="card-divider"></div>
+        <div class="rel-row">
+          <div class="rel-item"><strong>Pairs with:</strong> Synergy Sports, Sportradar</div>
+        </div>
+      </div>
+
+      <div class="card" data-layers="capture analytics" data-who="pro olympic"
+        data-name="Second Spectrum" data-tagline="NBA broadcast augmentation &amp; WNBA optical tracking"
+        data-icon-bg="#e6f1fb" data-icon-color="#185fa5"
+        data-url="https://www.secondspectrum.com"
+        data-func-pills='<span class="lp lp-capture">Capture</span><span class="lp lp-analytics">Analytics</span>'
+        data-sem-pills='<span class="lp lp-optical">Optical / Visual</span><span class="lp lp-spatial">Spatial / Play-type</span>'
+        data-who-html='<span class="who">Youth</span><span class="who">High school</span><span class="who">College</span><span class="who on">Pro</span><span class="who on">Olympic</span>'
+        data-features="NBA official team basketball analytics provider and official League Pass augmentation provider since 2023-24 (NBA press release, March 2023)|WNBA official optical tracking provider since 2024 — first women's pro sports league in the U.S. with leaguewide 3D tracking (WNBA press release, March 2024)|Now a Genius Sports company — acquired in 2021 for $200M (Sportico, March 2023)|Developing Dragon: a next-generation mesh data platform synthesizing millions of on-court basketball data points (NBA/Genius Sports, March 2023)|Powers broadcast AR overlays and automated enhanced graphics for NBA League Pass alternate telecasts"
+        data-usedby="All 30 NBA teams — official team analytics provider (NBA press release, March 2023)|All WNBA teams — official optical tracking provider since 2024 season (WNBA press release, March 2024)|Premier League and MLS clubs internationally (Sportico, March 2023)"
+        data-insight="Second Spectrum's role in the NBA ecosystem is more nuanced than 'replaced by Hawk-Eye.' While Hawk-Eye took over in-game optical tracking in 2023-24, Second Spectrum simultaneously expanded — becoming the WNBA's first-ever optical tracking provider in 2024 and continuing as the NBA's official team analytics and broadcast augmentation layer. For ADs and GMs, the distinction matters: Hawk-Eye captures the data; Second Spectrum helps translate it into coaching tools and fan-facing content."
+        data-interchangeable="Hawk-Eye (handles in-game NBA optical tracking — different roles, not direct substitutes)" data-pairs-with="Synergy Sports (analytics layer), Sportradar (data distribution)" data-scales-to="—">
+        <div class="card-top">
+          <div class="card-brand">
+            <div class="card-icon" style="background:#e6f1fb"><svg width="16" height="16" fill="none" stroke="#185fa5" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/></svg></div>
+            <div><div class="card-name">Second Spectrum</div><div class="card-tagline">NBA broadcast augmentation &amp; WNBA optical tracking</div></div>
+          </div>
+          <div class="card-hint">tap <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="layer-pills func-pills"><span class="lp lp-capture">Capture</span><span class="lp lp-analytics">Analytics</span></div>
+        <div class="layer-pills sem-pills" style="display:none"><span class="lp lp-optical">Optical / Visual</span><span class="lp lp-spatial">Spatial / Play-type</span></div>
+        <div class="who-row"><span class="who on">Pro</span><span class="who on">Olympic</span></div>
         <div class="card-divider"></div>
         <div class="rel-row">
           <div class="rel-item"><strong>Pairs with:</strong> Synergy Sports, Sportradar</div>
@@ -536,7 +531,7 @@ a{color:inherit;text-decoration:none}
         data-sem-pills='<span class="lp lp-physiological">Physiological</span><span class="lp lp-biomech">Biomechanical</span>'
         data-who-html='<span class="who">Youth</span><span class="who">High school</span><span class="who on">College</span><span class="who on">Pro</span><span class="who on">Olympic</span>'
         data-features="IMU waistband sensor used by 80%+ of NBA teams — tracks physical load during practice sessions|Real-time sprint load, acceleration bursts, distance, and intensity delivered directly to coaching staff|COMPETE Vision: camera-based automated shot tracking with zero wearables or manual input required|Links shooting efficiency data directly to fatigue and physical workload context per session|Integrates with Hawk-Eye and Second Spectrum to bridge practice load data and in-game optical data"
-        data-usedby="Boston Celtics|LA Lakers|Miami Heat|Phoenix Suns|USA Basketball (Olympic)|Bayern Munich Basketball"
+        data-usedby="80%+ of NBA teams (KINEXON published figure, kinexon-sports.com)|50+ NCAA men's and women's programs (KINEXON published figure)|EuroLeague teams"
         data-insight="KINEXON answers the question coaches have always wanted to ask: did shooting efficiency drop in the 4th quarter because of fatigue accumulated in Tuesday's practice? The sensor data makes that connection with precision — turning a feeling into a fact that drives substitution timing and future practice design decisions."
         data-interchangeable="Catapult (same functional category — programs typically choose one ecosystem)" data-pairs-with="Hawk-Eye / Second Spectrum (practice load + in-game optical loop), Synergy Sports (tactical context layer)" data-scales-to="—">
         <div class="card-top">
@@ -564,7 +559,7 @@ a{color:inherit;text-decoration:none}
         data-sem-pills='<span class="lp lp-physiological">Physiological</span>'
         data-who-html='<span class="who">Youth</span><span class="who">High school</span><span class="who on">College</span><span class="who on">Pro</span><span class="who on">Olympic</span>'
         data-features="Vector T7 sensor worn in practice — ClearSky local positioning system works accurately indoors|Tracks distance, sprint count, acceleration bursts, and cumulative workload per player per session|Pro Video Suite layers wearable load data directly alongside game film in one unified coaching view|Native one-click integration with Synergy Sports event data for tactical and physical cross-reference|Used by NBA teams, NCAA programs, and Olympic national teams across more than 40 sports globally"
-        data-usedby="Golden State Warriors|Cleveland Cavaliers|Milwaukee Bucks|Kansas Jayhawks|North Carolina Tar Heels|Australian Boomers (Olympic)"
+        data-usedby="3,800+ elite teams across 40+ sports in 100+ countries (Catapult published figure, catapult.com)|NBA and NCAA basketball programs (multiple — not all)"
         data-insight="Catapult + Synergy is one of the most powerful pairings in pro basketball: coaches pull a Synergy clip of a missed defensive assignment and simultaneously see that player's sprint load from that exact moment in the game — connecting tactical failure to physical context in a single view. It transforms film sessions from 'you didn't get back' to 'you were in your 47th high-intensity sprint of the half.'"
         data-interchangeable="KINEXON (same functional category — programs typically choose one)" data-pairs-with="Synergy Sports (load + tactics cross-reference), Hudl Sportscode (video overlay layer)" data-scales-to="—">
         <div class="card-top">
@@ -588,42 +583,14 @@ a{color:inherit;text-decoration:none}
     <div class="section-row"><span class="section-num">04</span><span class="section-title">Recovery &amp; wellness</span><div class="section-line"></div></div>
     <div class="cards-grid">
       <div class="card" data-layers="recovery" data-who="college pro olympic"
-        data-name="Oura Ring" data-tagline="Sleep &amp; readiness smart ring"
-        data-icon-bg="#fcebeb" data-icon-color="#a32d2d"
-        data-url="https://ouraring.com"
-        data-func-pills='<span class="lp lp-recovery">Recovery</span>'
-        data-sem-pills='<span class="lp lp-physiological">Physiological</span>'
-        data-who-html='<span class="who">Youth</span><span class="who">High school</span><span class="who on">College</span><span class="who on">Pro</span><span class="who on">Olympic</span>'
-        data-features="Titanium ring worn on the finger — no wrist interference during gameplay or shooting practice|Tracks sleep architecture (REM, deep, light sleep), body temperature, HRV, and respiratory rate overnight|Daily Readiness score synthesizes all physiological signals into one number for players and staff|Official NBA and WNBA partner — provided to players during the 2020 bubble and continued since|Finger measurement site provides a validated physiological accuracy advantage over wrist-based sensors for HRV"
-        data-usedby="NBA (official league partner)|WNBA (official league partner)|Sacramento Kings|San Antonio Spurs|Multiple Olympic national teams"
-        data-insight="The Oura Ring's discreet form factor matters specifically in basketball — players who resist wristbands for shooting form reasons readily adopt the ring. The NBA's official partnership signals institutional-level trust in the data quality, and the finger-site HRV readings give sports scientists more reliable overnight recovery baselines than wrist alternatives."
-        data-interchangeable="WHOOP (same recovery category — ring vs wristband is often a personal preference)" data-pairs-with="Catapult or KINEXON (overnight recovery data + practice load combined into one readiness view)" data-scales-to="—">
-        <div class="card-top">
-          <div class="card-brand">
-            <div class="card-icon" style="background:#fcebeb"><svg width="16" height="16" fill="none" stroke="#a32d2d" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="3"/></svg></div>
-            <div><div class="card-name">Oura Ring</div><div class="card-tagline">Sleep &amp; readiness smart ring</div></div>
-          </div>
-          <div class="card-hint">tap <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-        </div>
-        <div class="layer-pills func-pills"><span class="lp lp-recovery">Recovery</span></div>
-        <div class="layer-pills sem-pills" style="display:none"><span class="lp lp-physiological">Physiological</span></div>
-        <div class="who-row"><span class="who on">College</span><span class="who on">Pro</span><span class="who on">Olympic</span></div>
-        <div class="card-divider"></div>
-        <div class="rel-row">
-          <div class="rel-item"><strong>Interchangeable with:</strong> WHOOP</div>
-          <div class="rel-item"><strong>Pairs with:</strong> Catapult, KINEXON</div>
-        </div>
-      </div>
-
-      <div class="card" data-layers="recovery" data-who="college pro olympic"
         data-name="WHOOP" data-tagline="Recovery &amp; strain wristband"
         data-icon-bg="#fbeaf0" data-icon-color="#72243e"
         data-url="https://www.whoop.com"
         data-func-pills='<span class="lp lp-recovery">Recovery</span>'
         data-sem-pills='<span class="lp lp-physiological">Physiological</span>'
         data-who-html='<span class="who">Youth</span><span class="who">High school</span><span class="who on">College</span><span class="who on">Pro</span><span class="who on">Olympic</span>'
-        data-features="Wristband tracks HRV, resting heart rate, respiratory rate, and sleep stages continuously 24/7|Daily Strain score quantifies physical exertion — Recovery score tells staff readiness for the next session|WHOOP Teams dashboard lets coaches and athletic trainers monitor squad-wide readiness in aggregate|Players adopt voluntarily — no NBA league restrictions on wearing during games unlike some wearables|Widely used across NBA rosters; team subscriptions enable staff to flag at-risk players proactively"
-        data-usedby="Boston Celtics|Dallas Mavericks|Indiana Pacers|Oregon Ducks|Michigan Wolverines|Team USA (multiple sports)"
+        data-features="Wristband tracks HRV, resting heart rate, respiratory rate, and sleep stages continuously 24/7|Daily Strain score quantifies physical exertion — Recovery score tells staff readiness for the next session|WHOOP Teams dashboard lets coaches and athletic trainers monitor squad-wide readiness in aggregate|Official recovery wearable of the NFL Players Association since 2017 (WHOOP press release)|Widely adopted voluntarily by professional athletes — no confirmed league-level NBA or WNBA partnership as of 2025"
+        data-usedby="Widely used by individual NBA players including LeBron James (reported)|No official NBA or WNBA league-level partnership — player adoption is voluntary"
         data-insight="WHOOP gives athletic trainers a number they can act on before a player even sets foot on the court. When a starter's recovery score is in the red before a back-to-back, that data — not a player's subjective self-report — starts the conversation about load management. It's the shift from managing by feel to managing by evidence."
         data-interchangeable="Oura Ring (same recovery category — ring vs wristband form factor preference)" data-pairs-with="Catapult or KINEXON (practice load context for combined readiness picture), Hawk-Eye (in-game physical output)" data-scales-to="—">
         <div class="card-top">
@@ -642,6 +609,34 @@ a{color:inherit;text-decoration:none}
           <div class="rel-item"><strong>Pairs with:</strong> Catapult, KINEXON</div>
         </div>
       </div>
+
+      <div class="card" data-layers="recovery" data-who="college pro olympic"
+        data-name="Oura Ring" data-tagline="Sleep &amp; readiness smart ring"
+        data-icon-bg="#fcebeb" data-icon-color="#a32d2d"
+        data-url="https://ouraring.com"
+        data-func-pills='<span class="lp lp-recovery">Recovery</span>'
+        data-sem-pills='<span class="lp lp-physiological">Physiological</span>'
+        data-who-html='<span class="who">Youth</span><span class="who">High school</span><span class="who on">College</span><span class="who on">Pro</span><span class="who on">Olympic</span>'
+        data-features="Titanium ring worn on the finger — no wrist interference during gameplay or shooting practice|Tracks sleep architecture (REM, deep, light sleep), body temperature, HRV, and respiratory rate overnight|Daily Readiness score synthesizes all physiological signals into one number for players and staff|Official NBA and WNBA partner — provided to players during the 2020 bubble and continued since|Finger measurement site provides a validated physiological accuracy advantage over wrist-based sensors for HRV"
+        data-usedby="NBA — provided to all teams and league staff during 2020 bubble (NBA/Oura press release, July 2020)|WNBA — official health partner during 2020 bubble season (Oura press release, July 2020)|New York Knicks — named official partner 2023 (MSG Sports press release, Dec 2023)"
+        data-insight="The Oura Ring's discreet form factor matters specifically in basketball — players who resist wristbands for shooting form reasons readily adopt the ring. The NBA's official partnership signals institutional-level trust in the data quality, and the finger-site HRV readings give sports scientists more reliable overnight recovery baselines than wrist alternatives."
+        data-interchangeable="WHOOP (same recovery category — ring vs wristband is often a personal preference)" data-pairs-with="Catapult or KINEXON (overnight recovery data + practice load combined into one readiness view)" data-scales-to="—">
+        <div class="card-top">
+          <div class="card-brand">
+            <div class="card-icon" style="background:#fcebeb"><svg width="16" height="16" fill="none" stroke="#a32d2d" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div><div class="card-name">Oura Ring</div><div class="card-tagline">Sleep &amp; readiness smart ring</div></div>
+          </div>
+          <div class="card-hint">tap <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="layer-pills func-pills"><span class="lp lp-recovery">Recovery</span></div>
+        <div class="layer-pills sem-pills" style="display:none"><span class="lp lp-physiological">Physiological</span></div>
+        <div class="who-row"><span class="who on">College</span><span class="who on">Pro</span><span class="who on">Olympic</span></div>
+        <div class="card-divider"></div>
+        <div class="rel-row">
+          <div class="rel-item"><strong>Interchangeable with:</strong> WHOOP</div>
+          <div class="rel-item"><strong>Pairs with:</strong> Catapult, KINEXON</div>
+        </div>
+      </div>
     </div>
 
     <div class="section-row"><span class="section-num">05</span><span class="section-title">Live stats &amp; game analytics</span><div class="section-line"></div></div>
@@ -654,7 +649,7 @@ a{color:inherit;text-decoration:none}
         data-sem-pills='<span class="lp lp-spatial">Spatial / Play-type</span><span class="lp lp-biomech">Biomechanical</span>'
         data-who-html='<span class="who">Youth</span><span class="who on">High school</span><span class="who on">College</span><span class="who on">Pro</span><span class="who">Olympic</span>'
         data-features="Rafter anchor sensors + smart ball + player shoe sensors form the full capture infrastructure|120 calculations per second — every possession tracked automatically with no manual input required|Helix: automated practice tracking with 2–4 cm positional accuracy for every rep and action|Pulse: AI-powered bench-side box scores delivered live to coaches in real time during games|Fan engagement and broadcast data feeds available for media partners and arena scoreboards"
-        data-usedby="West Virginia Mountaineers|Wichita State Shockers|Belmont Bruins|St. Mary's Gaels|200+ college programs|Multiple G League teams"
+        data-usedby="50+ NCAA men's and women's programs (ShotTracker press release, March 2025)|Big 12 Conference official partner|Kansas, South Carolina, Baylor, Arizona, UCLA among confirmed clients (SeventySix Capital, April 2026)"
         data-insight="ShotTracker's Helix (practice) and Pulse (game) form a closed loop that most tools only partially solve. Programs use Noah to fix shot mechanics in practice, ShotTracker to confirm those mechanics are translating to made shots in games, then Synergy or Hudl Assist to understand the game context around remaining misses. Three tools, one complete answer to the question every player development staff asks."
         data-interchangeable="Hawk-Eye (for live game tracking at the pro and NBA level)" data-pairs-with="Noah Basketball (practice mechanics to game shooting loop), Synergy Sports (game context layer)" data-scales-to="Hawk-Eye / Second Spectrum (at the professional level)">
         <div class="card-top">
@@ -677,33 +672,6 @@ a{color:inherit;text-decoration:none}
 
     <div class="section-row"><span class="section-num">06</span><span class="section-title">Video analysis &amp; scouting</span><div class="section-line"></div></div>
     <div class="cards-grid">
-      <div class="card" data-layers="analytics output" data-who="hs college pro olympic"
-        data-name="Synergy Sports" data-tagline="Elite video analytics &amp; scouting"
-        data-icon-bg="#e1f5ee" data-icon-color="#0f6e56"
-        data-url="https://synergysports.com"
-        data-func-pills='<span class="lp lp-analytics">Analytics</span><span class="lp lp-output">Output</span>'
-        data-sem-pills='<span class="lp lp-videotagged">Video / Tagged</span><span class="lp lp-spatial">Spatial / Play-type</span>'
-        data-who-html='<span class="who">Youth</span><span class="who on">High school</span><span class="who on">College</span><span class="who on">Pro</span><span class="who on">Olympic</span>'
-        data-features="Analysts and AI tag 75,000+ games per year with archives dating back to the 2004 NBA season|Every possession sorted by play type: ISO, PnR ball handler, PnR roller, post, spot-up, and transition|Used by all 30 NBA teams, every WNBA franchise, and thousands of NCAA and international programs|Global player database enables recruiting, scouting, and draft evaluation without leaving the office|Native integrations with Catapult, FastModel/FastDraw, and Hudl Sportscode for seamless workflows"
-        data-usedby="All 30 NBA teams|All 13 WNBA teams|Duke Blue Devils|Kentucky Wildcats|Gonzaga Bulldogs|Kansas Jayhawks|UConn Huskies|Every Power 4 program"
-        data-insight="Synergy is the connective tissue of elite basketball analytics — the hub every other tool orbits around. Coaches pull Synergy clips of a specific play type, build the counter-action in FastDraw in the same session, layer in Catapult load context, and present the full package in Sportscode, all in one prep cycle. It's where raw data becomes a game plan."
-        data-interchangeable="Hudl Instat (strong alternative for international scouting at the pro level)" data-pairs-with="FastModel / FastDraw (scouting to game plan pipeline), Catapult (load + tactics), Hudl Sportscode (custom video coding engine)" data-scales-to="—">
-        <div class="card-top">
-          <div class="card-brand">
-            <div class="card-icon" style="background:#e1f5ee"><svg width="16" height="16" fill="none" stroke="#0f6e56" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></div>
-            <div><div class="card-name">Synergy Sports</div><div class="card-tagline">Elite video analytics &amp; scouting</div></div>
-          </div>
-          <div class="card-hint">tap <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-        </div>
-        <div class="layer-pills func-pills"><span class="lp lp-analytics">Analytics</span><span class="lp lp-output">Output</span></div>
-        <div class="layer-pills sem-pills" style="display:none"><span class="lp lp-videotagged">Video / Tagged</span><span class="lp lp-spatial">Spatial / Play-type</span></div>
-        <div class="who-row"><span class="who on">HS</span><span class="who on">College</span><span class="who on">Pro</span><span class="who on">Olympic</span></div>
-        <div class="card-divider"></div>
-        <div class="rel-row">
-          <div class="rel-item"><strong>Pairs with:</strong> FastModel, Catapult, Sportscode</div>
-        </div>
-      </div>
-
       <div class="card" data-layers="analytics output" data-who="hs college pro"
         data-name="Hudl Assist" data-tagline="Expert human game breakdown"
         data-icon-bg="#eeedfe" data-icon-color="#534ab7"
@@ -712,7 +680,7 @@ a{color:inherit;text-decoration:none}
         data-sem-pills='<span class="lp lp-videotagged">Video / Tagged</span>'
         data-who-html='<span class="who">Youth</span><span class="who on">High school</span><span class="who on">College</span><span class="who on">Pro</span><span class="who">Olympic</span>'
         data-features="Receives footage directly from Hudl Focus — no separate submission step needed for Focus users|Human analysts tag every play 24/7, delivering complete results within 24 hours of game completion|35+ data points per game: lineup efficiency, shot charts, turnovers, transition, defensive ratings, and more|Every stat is hyperlinked directly to its exact video clip for instant one-click coaching review|Automatic athlete highlight playlists generated from tagged data without any additional staff work"
-        data-usedby="10,000+ high school programs|Drake Bulldogs|Loyola Chicago Ramblers|Iona Gaels|Mid-major programs nationwide"
+        data-usedby="10,000+ high school programs (Hudl published figure)|NCAA programs across all divisions"
         data-insight="Assist sits between Focus (capture) and Sportscode (custom analysis) in the Hudl pipeline. Most high school and mid-major college programs rely on Assist as their entire analytics engine — it removes the need for a dedicated video coordinator by automating the tagging layer completely. For ADs, it's the most impactful investment at the developing and established program tiers."
         data-interchangeable="SportsVisio (for programs without Hudl Focus cameras), Hoopsalytics (budget alternative)" data-pairs-with="Hudl Focus Indoor/Outdoor (capture source), Hudl Sportscode (custom analysis on top of Assist data)" data-scales-to="Hudl Sportscode (when custom tagging workflows and deeper customization are needed)">
         <div class="card-top">
@@ -732,6 +700,33 @@ a{color:inherit;text-decoration:none}
         </div>
       </div>
 
+      <div class="card" data-layers="analytics output" data-who="hs college pro olympic"
+        data-name="Synergy Sports" data-tagline="Elite video analytics &amp; scouting"
+        data-icon-bg="#e1f5ee" data-icon-color="#0f6e56"
+        data-url="https://synergysports.com"
+        data-func-pills='<span class="lp lp-analytics">Analytics</span><span class="lp lp-output">Output</span>'
+        data-sem-pills='<span class="lp lp-videotagged">Video / Tagged</span><span class="lp lp-spatial">Spatial / Play-type</span>'
+        data-who-html='<span class="who">Youth</span><span class="who on">High school</span><span class="who on">College</span><span class="who on">Pro</span><span class="who on">Olympic</span>'
+        data-features="Analysts and AI tag 75,000+ games per year with archives dating back to the 2004 NBA season|Every possession sorted by play type: ISO, PnR ball handler, PnR roller, post, spot-up, and transition|Used by all 30 NBA teams, every WNBA franchise, and thousands of NCAA and international programs|Global player database enables recruiting, scouting, and draft evaluation without leaving the office|Native integrations with Catapult, FastModel/FastDraw, and Hudl Sportscode for seamless workflows"
+        data-usedby="NBA and 27 of their teams directly (SportBusiness, Nov 2024)|All WNBA teams (Sportradar/Synergy)|All NCAA Division I Men's and Women's teams (Sportradar/Synergy)|G League and international leagues including NBL (Australia) and B.League (Japan)"
+        data-insight="Synergy is the connective tissue of elite basketball analytics — the hub every other tool orbits around. Coaches pull Synergy clips of a specific play type, build the counter-action in FastDraw in the same session, layer in Catapult load context, and present the full package in Sportscode, all in one prep cycle. It's where raw data becomes a game plan."
+        data-interchangeable="Hudl Instat (strong alternative for international scouting at the pro level)" data-pairs-with="FastModel / FastDraw (scouting to game plan pipeline), Catapult (load + tactics), Hudl Sportscode (custom video coding engine)" data-scales-to="—">
+        <div class="card-top">
+          <div class="card-brand">
+            <div class="card-icon" style="background:#e1f5ee"><svg width="16" height="16" fill="none" stroke="#0f6e56" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></div>
+            <div><div class="card-name">Synergy Sports</div><div class="card-tagline">Elite video analytics &amp; scouting</div></div>
+          </div>
+          <div class="card-hint">tap <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="layer-pills func-pills"><span class="lp lp-analytics">Analytics</span><span class="lp lp-output">Output</span></div>
+        <div class="layer-pills sem-pills" style="display:none"><span class="lp lp-videotagged">Video / Tagged</span><span class="lp lp-spatial">Spatial / Play-type</span></div>
+        <div class="who-row"><span class="who on">HS</span><span class="who on">College</span><span class="who on">Pro</span><span class="who on">Olympic</span></div>
+        <div class="card-divider"></div>
+        <div class="rel-row">
+          <div class="rel-item"><strong>Pairs with:</strong> FastModel, Catapult, Sportscode</div>
+        </div>
+      </div>
+
       <div class="card" data-layers="analytics output" data-who="college pro olympic"
         data-name="Hudl Sportscode" data-tagline="Pro-grade custom video coding"
         data-icon-bg="#fbeaf0" data-icon-color="#72243e"
@@ -740,7 +735,7 @@ a{color:inherit;text-decoration:none}
         data-sem-pills='<span class="lp lp-videotagged">Video / Tagged</span>'
         data-who-html='<span class="who">Youth</span><span class="who">High school</span><span class="who on">College</span><span class="who on">Pro</span><span class="who on">Olympic</span>'
         data-features="Receives footage from Hudl Focus — the natural custom analysis step above Hudl Assist|macOS offline coding: coaches and analysts define their own tagging logic and workflow scripts entirely|Live iPad coding from the bench enables real-time clip-building and halftime film review sessions|Ingests Synergy event data, KINEXON load metrics, and Hudl Instat scouting data into one interface|Builds bespoke output reports and player clip packages tailored to each program's specific system"
-        data-usedby="San Antonio Spurs|Memphis Grizzlies|Oklahoma City Thunder|Michigan State Spartans|Villanova Wildcats|Arizona Wildcats|Australian national team"
+        data-usedby="NBA and NCAA programs (multiple — Hudl does not publish a client list)|International programs using Hudl ecosystem"
         data-insight="Sportscode is where programs that have outgrown Hudl Assist land. It's the custom analytics engine — video coordinators wire in Synergy events, overlay KINEXON fatigue data, and build reports around their team's specific defensive or offensive vocabulary. It's the video coordinator's primary daily workspace, and the layer that turns raw tagged data into coaching-ready content."
         data-interchangeable="Catapult Pro Video Suite (strong alternative for programs already running Catapult wearables)" data-pairs-with="Synergy Sports (primary data source), Hudl Focus (capture source), KINEXON / Catapult (load data overlay)" data-scales-to="—">
         <div class="card-top">
@@ -768,7 +763,7 @@ a{color:inherit;text-decoration:none}
         data-sem-pills='<span class="lp lp-videotagged">Video / Tagged</span>'
         data-who-html='<span class="who on">Youth</span><span class="who on">High school</span><span class="who on">College</span><span class="who">Pro</span><span class="who">Olympic</span>'
         data-features="Upload any game video from any source — no proprietary camera or hardware required to get started|AI returns tagged possessions, stats, and highlight clips within 24 hours of upload completion|Auto-generated player highlight reels ready for recruiting, social sharing, or parent communication|Mobile-first dashboards designed for coaches, players, and families without technical expertise required|Affordable entry point for programs without dedicated video staff or institutional Hudl subscriptions"
-        data-usedby="Club and AAU programs across the US|High school varsity programs|Small college programs|Youth travel leagues"
+        data-usedby="Entry-level club and high school programs"
         data-insight="SportsVisio is the Hudl Assist equivalent for programs that don't have a Hudl Focus camera — upload video from any source and get tagged breakdowns back. It fills the analytics gap for teams that can't yet afford the full Hudl ecosystem but still want data-driven coaching. For ADs evaluating technology entry points, SportsVisio represents the lowest-friction starting place for analytics adoption."
         data-interchangeable="Hudl Assist (for programs with Hudl Focus cameras), Hoopsalytics (budget alternative)" data-pairs-with="—" data-scales-to="Hudl Assist + Hudl Focus (when program is ready for the full Hudl pipeline)">
         <div class="card-top">
@@ -799,7 +794,7 @@ a{color:inherit;text-decoration:none}
         data-sem-pills='<span class="lp lp-diagrammatic">Diagrammatic / Strategic</span>'
         data-who-html='<span class="who">Youth</span><span class="who on">High school</span><span class="who on">College</span><span class="who on">Pro</span><span class="who on">Olympic</span>'
         data-features="Acquired by Hudl in late 2025 — now integrated into the broader Hudl ecosystem as a unified platform offering|Used by all 30 NBA teams, 85% of D1 programs, and 8,000+ high school and youth programs worldwide|FastDraw: animated play diagrams with Synergy video clips attached, pushed directly to players' phones|FastScout: full opponent scouting reports with embedded video clips and shot chart analysis built in|9,000+ play Playbank — searchable community library contributed by coaches at every level of the game"
-        data-usedby="All 30 NBA teams|Golden State Warriors|Chicago Bulls|Duke Blue Devils|North Carolina Tar Heels|Tennessee Volunteers|85%+ of D1 programs"
+        data-usedby="40,000+ customers across basketball, ice hockey, and other sports (Hudl acquisition press release, March 2025)|NBA, WNBA, NHL, and PWHL teams among clients (Hudl, March 2025)"
         data-insight="FastModel is where Synergy insights become game plans. A coach identifies a vulnerability in the opponent's PnR defense via Synergy, draws the counter play in FastDraw in the same session, attaches the Synergy clip as visual evidence, and pushes the full package to every player's phone before practice the next morning — the complete insight-to-action loop in a single workflow."
         data-interchangeable="—" data-pairs-with="Synergy Sports (scouting data source drives play design), Hudl Sportscode (film integration and presentation)" data-scales-to="—">
         <div class="card-top">
@@ -824,9 +819,9 @@ a{color:inherit;text-decoration:none}
       <div class="footnote-chips">
         <span class="fchip">Nacsport</span><span class="fchip">QwikCut</span><span class="fchip">Dartfish</span>
         <span class="fchip">Hoopsalytics</span><span class="fchip">CoachNow</span><span class="fchip">Sportlyzer</span>
-        <span class="fchip">SkillCorner</span><span class="fchip">Hudl Instat</span><span class="fchip">Hudl Replay</span><span class="fchip">Second Spectrum</span>
+        <span class="fchip">SkillCorner</span><span class="fchip">Hudl Instat</span><span class="fchip">Hudl Replay</span>
       </div>
-      <div class="footnote-note">These tools serve specific niches or regions. Nacsport and Dartfish are strong in European federations and Olympic programs. Hoopsalytics and QwikCut are affordable Hudl Assist alternatives for smaller programs. SkillCorner is emerging as a physical performance data layer for NCAA teams alongside KINEXON. Second Spectrum now focuses on NBA broadcast analytics and AR augmentation after Hawk-Eye became the primary NBA optical tracking provider in the 2023–24 season.</div>
+      <div class="footnote-note">These tools serve specific niches or regions. Nacsport and Dartfish are strong in European federations and Olympic programs. Hoopsalytics and QwikCut are affordable Hudl Assist alternatives for smaller programs. SkillCorner is emerging as a physical performance data layer for NCAA teams alongside KINEXON. Second Spectrum (now a Genius Sports company) is covered as a full tool card in Section 02 above — it remains active as the NBA's official team analytics and broadcast augmentation provider, and became the WNBA's official optical tracking provider in 2024.</div>
     </div>
   </div>
 </div>
@@ -1014,6 +1009,7 @@ a{color:inherit;text-decoration:none}
           <div class="level-col-label">Sample stack</div>
           <div class="tool-stack">
             <div class="tool-row"><div class="tool-dot capture"></div><div><div class="tool-name-small">Hawk-Eye (Sony)</div><div class="tool-role">Capture — official NBA in-game 3D pose tracking</div></div></div>
+            <div class="tool-row"><div class="tool-dot analytics"></div><div><div class="tool-name-small">Second Spectrum</div><div class="tool-role">Analytics — NBA broadcast augmentation + WNBA optical tracking provider</div></div></div>
             <div class="tool-row"><div class="tool-dot capture"></div><div><div class="tool-name-small">KINEXON + Catapult</div><div class="tool-role">Capture — practice wearables (both often used in parallel)</div></div></div>
             <div class="tool-row"><div class="tool-dot recovery"></div><div><div class="tool-name-small">WHOOP + Oura Ring</div><div class="tool-role">Recovery — 24/7 readiness monitoring for entire roster</div></div></div>
             <div class="tool-row"><div class="tool-dot capture"></div><div><div class="tool-name-small">Noah Basketball</div><div class="tool-role">Capture — individual shooting mechanics layer</div></div></div>
@@ -1131,70 +1127,6 @@ function setView(v){
   }
 }
 
-// VERIFIED USEDBY DATA — replaces all card data-usedby attributes with confirmed sources only
-const verifiedUsedBy = {
-  'HomeCourt': 'NBA (official partner)|USA Basketball',
-  'Noah Basketball': 'NBA teams (multiple — not all)|NCAA programs (multiple — not all)',
-  'Hudl Focus Indoor / Outdoor': '7,000+ high school programs|400+ college programs',
-  'Hudl Focus Flex': 'High school and club programs using Hudl ecosystem',
-  'Hawk-Eye (Sony)': 'All 30 NBA teams (official provider since 2023–24)|FIBA international venues',
-  'KINEXON': '80%+ of NBA teams (KINEXON published figure)|Olympic national teams',
-  'Catapult': 'NBA teams (multiple — not all)|NCAA programs (multiple — not all)|Olympic national teams (40+ sports globally)',
-  'WHOOP': 'NBA teams (multiple — not all)|NCAA programs (multiple — not all)',
-  'Oura Ring': 'NBA (official league partner)|WNBA (official league partner)',
-  'ShotTracker': '200+ college programs|Multiple G League teams',
-  'Hudl Assist': '10,000+ high school programs|NCAA programs across all divisions',
-  'Synergy Sports': 'All 30 NBA teams|All 13 WNBA teams|Thousands of NCAA and international programs',
-  'Hudl Sportscode': 'NBA teams (multiple — not all)|NCAA programs (multiple — not all)|Olympic national teams',
-  'SportsVisio': 'Club and high school programs (entry-level segment)',
-  'FastModel / FastDraw': 'All 30 NBA teams|85%+ of D1 programs (FastModel published figure)|8,000+ programs worldwide'
-};
-
-// Build expanded detail block from card data
-function buildExpandedDetail(d){
-  const features=(d.features||'').split('|').filter(Boolean);
-  const name=d.name||'';
-  const usedByRaw=verifiedUsedBy[name]||'';
-  const usedByChips=usedByRaw.split('|').filter(Boolean).map(u=>`<span class="card-exp-chip">${u.trim()}</span>`).join('');
-  const interchangeable=d.interchangeable&&d.interchangeable.trim()&&d.interchangeable!=='—'?`<div class="rel-item"><strong>Interchangeable with:</strong> ${d.interchangeable}</div>`:'';
-  const pairsWith=d.pairsWith&&d.pairsWith.trim()&&d.pairsWith!=='—'?`<div class="rel-item"><strong>Pairs with:</strong> ${d.pairsWith}</div>`:'';
-  const scalesTo=d.scalesTo&&d.scalesTo.trim()&&d.scalesTo!=='—'?`<div class="rel-item"><strong>Scales to:</strong> ${d.scalesTo}</div>`:'';
-  return `
-    <div class="card-exp-divider"></div>
-    ${usedByChips?`<div><div class="card-exp-label">Used by</div><div class="card-exp-usedby">${usedByChips}</div></div>`:''}
-    <div>
-      <div class="card-exp-label">What it does</div>
-      <ul class="card-exp-features">${features.map(f=>`<li>${f}</li>`).join('')}</ul>
-    </div>
-    <div class="card-exp-insight">
-      <div class="card-exp-insight-label">In practice</div>
-      <div class="card-exp-insight-text">${d.insight||''}</div>
-    </div>
-    ${interchangeable||pairsWith||scalesTo?`<div><div class="card-exp-label">Tool relationships</div><div class="rel-row">${interchangeable}${pairsWith}${scalesTo}</div></div>`:''}
-  `;
-}
-
-// Inject expanded detail blocks into every card on load
-document.querySelectorAll('.card').forEach(card=>{
-  const detail=document.createElement('div');
-  detail.className='card-expanded-detail';
-  detail.innerHTML=buildExpandedDetail(card.dataset);
-  card.appendChild(detail);
-});
-
-// EXPAND ALL TOGGLE
-let expandedMode=false;
-function toggleExpandAll(){
-  expandedMode=!expandedMode;
-  const btn=document.getElementById('expand-toggle');
-  document.querySelectorAll('.cards-grid').forEach(grid=>grid.classList.toggle('expanded-mode',expandedMode));
-  if(btn){
-    btn.classList.toggle('active',expandedMode);
-    btn.textContent=expandedMode?'collapse all':'expand all';
-  }
-}
-
-// FILTER
 document.querySelectorAll('.fbtn').forEach(btn=>{
   btn.addEventListener('click',()=>{
     document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));
@@ -1214,7 +1146,6 @@ document.querySelectorAll('.fbtn').forEach(btn=>{
   });
 });
 
-// OVERLAY
 const overlay=document.getElementById('overlay');
 const overlayContent=document.getElementById('overlay-content');
 
@@ -1226,9 +1157,7 @@ function buildOverlay(d){
   if(d.pairsWith&&d.pairsWith.trim()&&d.pairsWith!=='—')relsHtml+=`<div class="overlay-rel"><strong>Pairs with:</strong> ${d.pairsWith}</div>`;
   if(d.scalesTo&&d.scalesTo.trim()&&d.scalesTo!=='—')relsHtml+=`<div class="overlay-rel"><strong>Scales to:</strong> ${d.scalesTo}</div>`;
   const displayUrl=(d.url||'').replace('https://','').replace('http://','').replace('www.','');
-  const name=d.name||'';
-  const usedByRaw=verifiedUsedBy[name]||'';
-  const usedByChips=usedByRaw.split('|').filter(Boolean).map(u=>`<span class="ub-chip">${u.trim()}</span>`).join('');
+  const usedByChips=(d.usedby||'').split('|').filter(Boolean).map(u=>`<span class="ub-chip">${u.trim()}</span>`).join('');
   const usedByBlock=usedByChips?`<div class="overlay-usedby"><div class="overlay-usedby-label">Used by</div><div class="overlay-usedby-chips">${usedByChips}</div></div>`:'';
   return `
     <div class="overlay-header">
@@ -1236,7 +1165,7 @@ function buildOverlay(d){
         <svg width="22" height="22" fill="none" stroke="${d.iconColor||'#888'}" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></svg>
       </div>
       <div>
-        <div class="overlay-name">${name}</div>
+        <div class="overlay-name">${d.name||''}</div>
         <div class="overlay-tagline">${d.tagline||''}</div>
         ${d.url?`<a class="overlay-ext" href="${d.url}" target="_blank">${displayUrl} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a>`:''}
       </div>
@@ -1257,7 +1186,6 @@ function buildOverlay(d){
 }
 
 function openOverlay(card){
-  if(expandedMode)return; // overlay disabled in expanded mode
   overlayContent.innerHTML=buildOverlay(card.dataset);
   overlay.classList.add('open');
   document.body.style.overflow='hidden';
@@ -1274,6 +1202,5 @@ document.getElementById('overlay-close').addEventListener('click',closeOverlay);
 overlay.addEventListener('click',e=>{if(e.target===overlay)closeOverlay();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeOverlay();});
 </script>
-
 </body>
 </html>
