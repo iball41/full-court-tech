@@ -24,6 +24,7 @@
   --red:#a32d2d;--red-light:#fcebeb;
 }
 html{scroll-behavior:smooth}
+html.instant-scroll{scroll-behavior:auto}
 body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--black);font-size:15px;line-height:1.6;min-height:100vh}
 a{color:inherit;text-decoration:none}
 
@@ -32,7 +33,7 @@ a{color:inherit;text-decoration:none}
 .nav-brand{display:flex;flex-direction:column;gap:1px}
 .nav-brand-title{font-family:'DM Serif Display',serif;font-size:14px;color:var(--white);letter-spacing:.01em;line-height:1.1}
 .nav-brand-title span{color:var(--accent)}
-.nav-brand-by{font-size:10px;color:#9e9b95;letter-spacing:.04em;font-weight:500}
+.nav-brand-by{font-size:10px;color:#c8c5bc;letter-spacing:.04em;font-weight:500}
 .nav-tabs{display:flex;gap:2px}
 .nav-tab{font-size:11px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--gray-400);padding:7px 16px;border-radius:4px;cursor:pointer;transition:all .18s;border:none;background:none;font-family:'DM Sans',sans-serif}
 .nav-tab:hover{color:var(--white)}
@@ -50,7 +51,7 @@ a{color:inherit;text-decoration:none}
 .eyebrow::before{content:'';display:inline-block;width:24px;height:1px;background:var(--accent)}
 .dir-hero h1{font-family:'DM Serif Display',serif;font-size:clamp(34px,5vw,62px);color:var(--white);line-height:1.05;margin-bottom:.4rem}
 .dir-hero h1 em{color:var(--accent);font-style:italic}
-.dir-hero-byline{font-size:13px;color:#9e9b95;margin-bottom:1.5rem;letter-spacing:.02em}
+.dir-hero-byline{font-size:13px;color:#c8c5bc;margin-bottom:1.5rem;letter-spacing:.02em}
 .dir-hero-sub{font-size:15px;color:var(--gray-200);max-width:540px;line-height:1.75;margin-bottom:2.5rem}
 .stat-row{display:flex;gap:3rem;flex-wrap:wrap}
 .stat{border-left:2px solid var(--accent);padding-left:1rem}
@@ -123,6 +124,29 @@ a{color:inherit;text-decoration:none}
 
 .card-divider{height:1px;background:var(--gray-100)}
 
+/* EXPANDED CARD STATE */
+.card-expanded-detail{display:none;flex-direction:column;gap:10px;margin-top:2px}
+.cards-grid.expanded-mode .card-expanded-detail{display:flex}
+.cards-grid.expanded-mode .card{cursor:default}
+.cards-grid.expanded-mode .card:hover{background:var(--white)}
+.cards-grid.expanded-mode .card-hint{display:none}
+.card-exp-divider{height:1px;background:var(--gray-100)}
+.card-exp-label{font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-400);margin-bottom:4px}
+.card-exp-features{list-style:none;display:flex;flex-direction:column;gap:5px}
+.card-exp-features li{font-size:11px;color:var(--gray-600);line-height:1.5;padding-left:14px;position:relative}
+.card-exp-features li::before{content:'→';position:absolute;left:0;font-size:9px;color:var(--gray-200);top:3px}
+.card-exp-insight{border-left:2px solid var(--teal-mid);padding:8px 12px;background:var(--teal-light);border-radius:0 6px 6px 0}
+.card-exp-insight-label{font-size:9px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:4px}
+.card-exp-insight-text{font-family:'DM Serif Display',serif;font-size:12px;color:var(--gray-600);line-height:1.65;font-style:italic}
+.card-exp-usedby{display:flex;flex-wrap:wrap;gap:4px}
+.card-exp-chip{font-size:10px;padding:2px 8px;border-radius:20px;background:var(--gray-50);border:1px solid var(--gray-100);color:var(--gray-600)}
+
+/* HELPER TEXT + INLINE EXPAND LINK */
+.dir-helper{font-size:12px;color:var(--gray-400);margin-bottom:2rem;line-height:1.5}
+.expand-link{font-size:12px;color:var(--accent);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;padding:0;text-decoration:underline;text-underline-offset:2px;transition:opacity .15s}
+.expand-link:hover{opacity:.7}
+.expand-link.active{font-weight:500}
+
 /* RELATIONSHIP ROW */
 .rel-row{display:flex;flex-direction:column;gap:4px}
 .rel-item{font-size:10px;color:var(--gray-400);line-height:1.4}
@@ -176,7 +200,7 @@ a{color:inherit;text-decoration:none}
 .mm-hero-inner{max-width:960px;margin:0 auto}
 .mm-hero h1{font-family:'DM Serif Display',serif;font-size:clamp(30px,4.5vw,56px);color:var(--white);line-height:1.05;margin-bottom:.4rem}
 .mm-hero h1 em{color:var(--accent);font-style:italic}
-.mm-hero-byline{font-size:13px;color:#9e9b95;margin-bottom:1.5rem}
+.mm-hero-byline{font-size:13px;color:#c8c5bc;margin-bottom:1.5rem}
 .mm-hero-sub{font-size:15px;color:var(--gray-200);max-width:540px;line-height:1.75;margin-bottom:1.25rem}
 .mm-disclaimer{display:flex;align-items:flex-start;gap:8px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:10px 14px;max-width:580px}
 .mm-disclaimer-icon{color:var(--accent);font-size:12px;flex-shrink:0;margin-top:1px}
@@ -247,10 +271,10 @@ a{color:inherit;text-decoration:none}
 /* FOOTER */
 .site-footer{background:var(--black);padding:2rem 2.5rem;display:flex;flex-direction:column;gap:.75rem}
 .footer-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
-.footer-brand{font-family:'DM Serif Display',serif;font-size:14px;color:var(--white);letter-spacing:.01em;line-height:1.1}
+.footer-brand{font-family:'DM Serif Display',serif;font-size:13px;color:#c8c5bc}
 .footer-brand span{color:var(--accent)}
-.footer-date{font-size:11px;color:#6b6865}
-.footer-copy{font-size:10px;color:#9e9b95;line-height:1.7;max-width:700px;border-top:1px solid #1a1a1a;padding-top:.75rem;font-weight:500}
+.footer-date{font-size:11px;color:#c8c5bc}
+.footer-copy{font-size:10px;color:#c8c5bc;line-height:1.7;max-width:700px;border-top:1px solid #2a2a2a;padding-top:.75rem}
 
 @media(max-width:680px){
   .dir-hero,.mm-hero{padding:3rem 1.25rem 2.5rem}
@@ -352,6 +376,8 @@ a{color:inherit;text-decoration:none}
 
   <div class="dir-content">
 
+    <div class="dir-helper">Tap any card to explore. On desktop, you can also <button class="expand-link" id="expand-toggle" onclick="toggleExpandAll()">expand all</button>.</div>
+
     <div class="section-row"><span class="section-num">01</span><span class="section-title">Individual player development</span><div class="section-line"></div></div>
     <div class="cards-grid">
       <div class="card" data-layers="allinone" data-who="youth hs college"
@@ -389,8 +415,8 @@ a{color:inherit;text-decoration:none}
         data-func-pills='<span class="lp lp-capture">Capture</span><span class="lp lp-analytics">Analytics</span>'
         data-sem-pills='<span class="lp lp-biomech">Biomechanical</span>'
         data-who-html='<span class="who">Youth</span><span class="who on">High school</span><span class="who on">College</span><span class="who on">Pro</span><span class="who">Olympic</span>'
-        data-features="Sensor mounted 13 ft above the rim — no wearables or manual input ever required|Captures arc, depth, and left-right deviation on every single shot automatically and instantly|Targets the scientifically proven optimal: 45° arc and 11 inches deep into the rim|Instant audio and visual feedback after every rep — players self-correct form in real time|Installed in 93% of NBA facilities, used across WNBA, G League, and 200+ NCAA programs (noahbasketball.com, 2024)"
-        data-usedby="93% of NBA facilities (Noah Basketball published figure, 2024)|WNBA and G League teams|200+ NCAA programs"
+        data-features="Sensor mounted 13 ft above the rim — no wearables or manual input ever required|Captures arc, depth, and left-right deviation on every single shot automatically and instantly|Targets the scientifically proven optimal: 45° arc and 11 inches deep into the rim|Instant audio and visual feedback after every rep — players self-correct form in real time|Used by over 90% of NBA teams, WNBA, G League, and top NCAA programs (noahbasketball.com/products, 2024)"
+        data-usedby="Over 90% of NBA teams (noahbasketball.com/products, 2024)|WNBA, G League, and top NCAA programs (noahbasketball.com/products, 2024)"
         data-insight="Elite programs cross-reference Noah shooting data with Synergy video to understand why a shot is off — is it a mechanical issue (arc, depth) or contextual (defender contest, fatigue late in a game)? Noah answers the first question; Synergy answers the second. That combination turns a frustrating miss into a coachable, data-backed conversation."
         data-interchangeable="KINEXON COMPETE Vision (camera-based shot tracking alternative)" data-pairs-with="Synergy Sports (mechanical vs contextual cross-reference), ShotTracker (practice-to-game shooting loop)" data-scales-to="—">
         <div class="card-top">
@@ -421,7 +447,7 @@ a{color:inherit;text-decoration:none}
         data-sem-pills='<span class="lp lp-optical">Optical / Visual</span>'
         data-who-html='<span class="who">Youth</span><span class="who on">High school</span><span class="who on">College</span><span class="who on">Pro</span><span class="who">Olympic</span>'
         data-features="Permanently mounted in your gym or stadium — records every game and practice automatically|AI player and ball tracking, 180° panoramic HD coverage, no cameraman or operator ever needed|Auto-uploads all footage directly to Hudl immediately after every session ends without staff input|Livestreams directly to Hudl TV for fans, families, and recruiting audiences from any device|Native entry point that feeds Hudl Assist, Sportscode, and Instat pipelines downstream"
-        data-usedby="7,000+ high school programs (Hudl published figure)|400+ college programs (Hudl published figure)"
+        data-usedby="High schools, athletic departments, and college programs across all divisions (hudl.com/products/focus)"
         data-insight="Focus is the entry point to the entire Hudl pipeline. Once installed, it feeds Hudl Assist (human breakdown), Sportscode (custom coach analysis), and Instat (advanced scouting) — all without a staff member ever touching a camera. For ADs, a single Focus installation effectively replaces the need for a video coordinator at the capture layer."
         data-interchangeable="Hudl Focus Flex (portable version for away venues)" data-pairs-with="Hudl Assist (automated breakdown), Hudl Sportscode (custom analysis)" data-scales-to="—">
         <div class="card-top">
@@ -480,7 +506,7 @@ a{color:inherit;text-decoration:none}
         data-usedby="All 30 NBA teams — official optical tracking provider since 2023-24 (NBA press release, March 2023)|FIBA international venues"
         data-sportvu="SportVU (STATS LLC) pioneered NBA-wide optical tracking from 2013–17, proving the category's value before Second Spectrum took over (2017–23) and Hawk-Eye became the current standard. The analytical vocabulary SportVU introduced — speed profiles, paint touches, defensive matchups, court coverage maps — is the language every program still uses today."
         data-insight="Hawk-Eye represents a generational leap over prior tracking systems. Where Second Spectrum tracked a single center-of-mass point per player, Hawk-Eye tracks 29 body points — meaning teams can now analyze jump mechanics, landing angles, and movement efficiency in ways that directly inform injury prevention and conditioning decisions, not just tactical analysis."
-        data-interchangeable="Second Spectrum (co-exists in NBA ecosystem — handles broadcast augmentation and team analytics)" data-pairs-with="Sportradar (official data distribution), Synergy Sports (play-type analytics layer)" data-scales-to="—">
+        data-interchangeable="—" data-pairs-with="Synergy Sports (analytics layer), Sportradar (data distribution)" data-scales-to="—">
         <div class="card-top">
           <div class="card-brand">
             <div class="card-icon" style="background:#eeedfe"><svg width="16" height="16" fill="none" stroke="#534ab7" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg></div>
@@ -491,33 +517,6 @@ a{color:inherit;text-decoration:none}
         <div class="layer-pills func-pills"><span class="lp lp-capture">Capture</span><span class="lp lp-analytics">Analytics</span></div>
         <div class="layer-pills sem-pills" style="display:none"><span class="lp lp-optical">Optical / Visual</span><span class="lp lp-biomech">Biomechanical</span></div>
         <div class="who-row"><span class="who on">College</span><span class="who on">Pro</span><span class="who on">Olympic</span></div>
-        <div class="card-divider"></div>
-        <div class="rel-row">
-          <div class="rel-item"><strong>Pairs with:</strong> Synergy Sports, Sportradar</div>
-        </div>
-      </div>
-
-      <div class="card" data-layers="capture analytics" data-who="pro olympic"
-        data-name="Second Spectrum" data-tagline="NBA broadcast augmentation &amp; WNBA optical tracking"
-        data-icon-bg="#e6f1fb" data-icon-color="#185fa5"
-        data-url="https://www.secondspectrum.com"
-        data-func-pills='<span class="lp lp-capture">Capture</span><span class="lp lp-analytics">Analytics</span>'
-        data-sem-pills='<span class="lp lp-optical">Optical / Visual</span><span class="lp lp-spatial">Spatial / Play-type</span>'
-        data-who-html='<span class="who">Youth</span><span class="who">High school</span><span class="who">College</span><span class="who on">Pro</span><span class="who on">Olympic</span>'
-        data-features="NBA official team basketball analytics provider and official League Pass augmentation provider since 2023-24 (NBA press release, March 2023)|WNBA official optical tracking provider since 2024 — first women's pro sports league in the U.S. with leaguewide 3D tracking (WNBA press release, March 2024)|Now a Genius Sports company — acquired in 2021 for $200M (Sportico, March 2023)|Developing Dragon: a next-generation mesh data platform synthesizing millions of on-court basketball data points (NBA/Genius Sports, March 2023)|Powers broadcast AR overlays and automated enhanced graphics for NBA League Pass alternate telecasts"
-        data-usedby="All 30 NBA teams — official team analytics provider (NBA press release, March 2023)|All WNBA teams — official optical tracking provider since 2024 season (WNBA press release, March 2024)|Premier League and MLS clubs internationally (Sportico, March 2023)"
-        data-insight="Second Spectrum's role in the NBA ecosystem is more nuanced than 'replaced by Hawk-Eye.' While Hawk-Eye took over in-game optical tracking in 2023-24, Second Spectrum simultaneously expanded — becoming the WNBA's first-ever optical tracking provider in 2024 and continuing as the NBA's official team analytics and broadcast augmentation layer. For ADs and GMs, the distinction matters: Hawk-Eye captures the data; Second Spectrum helps translate it into coaching tools and fan-facing content."
-        data-interchangeable="Hawk-Eye (handles in-game NBA optical tracking — different roles, not direct substitutes)" data-pairs-with="Synergy Sports (analytics layer), Sportradar (data distribution)" data-scales-to="—">
-        <div class="card-top">
-          <div class="card-brand">
-            <div class="card-icon" style="background:#e6f1fb"><svg width="16" height="16" fill="none" stroke="#185fa5" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/></svg></div>
-            <div><div class="card-name">Second Spectrum</div><div class="card-tagline">NBA broadcast augmentation &amp; WNBA optical tracking</div></div>
-          </div>
-          <div class="card-hint">tap <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-        </div>
-        <div class="layer-pills func-pills"><span class="lp lp-capture">Capture</span><span class="lp lp-analytics">Analytics</span></div>
-        <div class="layer-pills sem-pills" style="display:none"><span class="lp lp-optical">Optical / Visual</span><span class="lp lp-spatial">Spatial / Play-type</span></div>
-        <div class="who-row"><span class="who on">Pro</span><span class="who on">Olympic</span></div>
         <div class="card-divider"></div>
         <div class="rel-row">
           <div class="rel-item"><strong>Pairs with:</strong> Synergy Sports, Sportradar</div>
@@ -587,34 +586,6 @@ a{color:inherit;text-decoration:none}
     <div class="section-row"><span class="section-num">04</span><span class="section-title">Recovery &amp; wellness</span><div class="section-line"></div></div>
     <div class="cards-grid">
       <div class="card" data-layers="recovery" data-who="college pro olympic"
-        data-name="WHOOP" data-tagline="Recovery &amp; strain wristband"
-        data-icon-bg="#fbeaf0" data-icon-color="#72243e"
-        data-url="https://www.whoop.com"
-        data-func-pills='<span class="lp lp-recovery">Recovery</span>'
-        data-sem-pills='<span class="lp lp-physiological">Physiological</span>'
-        data-who-html='<span class="who">Youth</span><span class="who">High school</span><span class="who on">College</span><span class="who on">Pro</span><span class="who on">Olympic</span>'
-        data-features="Wristband tracks HRV, resting heart rate, respiratory rate, and sleep stages continuously 24/7|Daily Strain score quantifies physical exertion — Recovery score tells staff readiness for the next session|WHOOP Teams dashboard lets coaches and athletic trainers monitor squad-wide readiness in aggregate|Official recovery wearable of the NFL Players Association since 2017 (WHOOP press release)|Widely adopted voluntarily by professional athletes — no confirmed league-level NBA or WNBA partnership as of 2025"
-        data-usedby="Widely used by individual NBA players including LeBron James (reported)|No official NBA or WNBA league-level partnership — player adoption is voluntary"
-        data-insight="WHOOP gives athletic trainers a number they can act on before a player even sets foot on the court. When a starter's recovery score is in the red before a back-to-back, that data — not a player's subjective self-report — starts the conversation about load management. It's the shift from managing by feel to managing by evidence."
-        data-interchangeable="Oura Ring (same recovery category — ring vs wristband form factor preference)" data-pairs-with="Catapult or KINEXON (practice load context for combined readiness picture), Hawk-Eye (in-game physical output)" data-scales-to="—">
-        <div class="card-top">
-          <div class="card-brand">
-            <div class="card-icon" style="background:#fbeaf0"><svg width="16" height="16" fill="none" stroke="#72243e" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
-            <div><div class="card-name">WHOOP</div><div class="card-tagline">Recovery &amp; strain wristband</div></div>
-          </div>
-          <div class="card-hint">tap <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-        </div>
-        <div class="layer-pills func-pills"><span class="lp lp-recovery">Recovery</span></div>
-        <div class="layer-pills sem-pills" style="display:none"><span class="lp lp-physiological">Physiological</span></div>
-        <div class="who-row"><span class="who on">College</span><span class="who on">Pro</span><span class="who on">Olympic</span></div>
-        <div class="card-divider"></div>
-        <div class="rel-row">
-          <div class="rel-item"><strong>Interchangeable with:</strong> Oura Ring</div>
-          <div class="rel-item"><strong>Pairs with:</strong> Catapult, KINEXON</div>
-        </div>
-      </div>
-
-      <div class="card" data-layers="recovery" data-who="college pro olympic"
         data-name="Oura Ring" data-tagline="Sleep &amp; readiness smart ring"
         data-icon-bg="#fcebeb" data-icon-color="#a32d2d"
         data-url="https://ouraring.com"
@@ -641,6 +612,34 @@ a{color:inherit;text-decoration:none}
           <div class="rel-item"><strong>Pairs with:</strong> Catapult, KINEXON</div>
         </div>
       </div>
+
+      <div class="card" data-layers="recovery" data-who="college pro olympic"
+        data-name="WHOOP" data-tagline="Recovery &amp; strain wristband"
+        data-icon-bg="#fbeaf0" data-icon-color="#72243e"
+        data-url="https://www.whoop.com"
+        data-func-pills='<span class="lp lp-recovery">Recovery</span>'
+        data-sem-pills='<span class="lp lp-physiological">Physiological</span>'
+        data-who-html='<span class="who">Youth</span><span class="who">High school</span><span class="who on">College</span><span class="who on">Pro</span><span class="who on">Olympic</span>'
+        data-features="Wristband tracks HRV, resting heart rate, respiratory rate, and sleep stages continuously 24/7|Daily Strain score quantifies physical exertion — Recovery score tells staff readiness for the next session|WHOOP Teams dashboard lets coaches and athletic trainers monitor squad-wide readiness in aggregate|Official recovery wearable of the NFL Players Association since 2017 (WHOOP press release)|Widely adopted voluntarily by professional athletes — no confirmed league-level NBA or WNBA partnership as of 2025"
+        data-usedby="LeBron James — confirmed WHOOP user (Fast Company, 2018; WHOOP press center)|Works with teams across all five major North American sports leagues and Olympic teams (Sports Illustrated / WHOOP press center, 2015)|No official NBA or WNBA league-level partnership — individual and team adoption is voluntary"
+        data-insight="WHOOP gives athletic trainers a number they can act on before a player even sets foot on the court. When a starter's recovery score is in the red before a back-to-back, that data — not a player's subjective self-report — starts the conversation about load management. It's the shift from managing by feel to managing by evidence."
+        data-interchangeable="Oura Ring (same recovery category — ring vs wristband form factor preference)" data-pairs-with="Catapult or KINEXON (practice load context for combined readiness picture), Hawk-Eye (in-game physical output)" data-scales-to="—">
+        <div class="card-top">
+          <div class="card-brand">
+            <div class="card-icon" style="background:#fbeaf0"><svg width="16" height="16" fill="none" stroke="#72243e" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+            <div><div class="card-name">WHOOP</div><div class="card-tagline">Recovery &amp; strain wristband</div></div>
+          </div>
+          <div class="card-hint">tap <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="layer-pills func-pills"><span class="lp lp-recovery">Recovery</span></div>
+        <div class="layer-pills sem-pills" style="display:none"><span class="lp lp-physiological">Physiological</span></div>
+        <div class="who-row"><span class="who on">College</span><span class="who on">Pro</span><span class="who on">Olympic</span></div>
+        <div class="card-divider"></div>
+        <div class="rel-row">
+          <div class="rel-item"><strong>Interchangeable with:</strong> Oura Ring</div>
+          <div class="rel-item"><strong>Pairs with:</strong> Catapult, KINEXON</div>
+        </div>
+      </div>
     </div>
 
     <div class="section-row"><span class="section-num">05</span><span class="section-title">Live stats &amp; game analytics</span><div class="section-line"></div></div>
@@ -653,7 +652,7 @@ a{color:inherit;text-decoration:none}
         data-sem-pills='<span class="lp lp-spatial">Spatial / Play-type</span><span class="lp lp-biomech">Biomechanical</span>'
         data-who-html='<span class="who">Youth</span><span class="who on">High school</span><span class="who on">College</span><span class="who on">Pro</span><span class="who">Olympic</span>'
         data-features="Rafter anchor sensors + smart ball + player shoe sensors form the full capture infrastructure|120 calculations per second — every possession tracked automatically with no manual input required|Helix: automated practice tracking with 2–4 cm positional accuracy for every rep and action|Pulse: AI-powered bench-side box scores delivered live to coaches in real time during games|Fan engagement and broadcast data feeds available for media partners and arena scoreboards"
-        data-usedby="50+ NCAA men's and women's programs (ShotTracker press release, March 2025)|Big 12 Conference official partner|Kansas, South Carolina, Baylor, Arizona, UCLA among confirmed clients (SeventySix Capital, April 2026)"
+        data-usedby="50+ college programs (ShotTracker press release, March 2025)|Baylor, Arizona, South Carolina, UCLA — confirmed D1 partners (SeventySix Capital, April 4, 2026)|University of Central Florida Women's Basketball — confirmed partner (SeventySix Capital, Feb 12, 2026)"
         data-insight="ShotTracker's Helix (practice) and Pulse (game) form a closed loop that most tools only partially solve. Programs use Noah to fix shot mechanics in practice, ShotTracker to confirm those mechanics are translating to made shots in games, then Synergy or Hudl Assist to understand the game context around remaining misses. Three tools, one complete answer to the question every player development staff asks."
         data-interchangeable="Hawk-Eye (for live game tracking at the pro and NBA level)" data-pairs-with="Noah Basketball (practice mechanics to game shooting loop), Synergy Sports (game context layer)" data-scales-to="Hawk-Eye / Second Spectrum (at the professional level)">
         <div class="card-top">
@@ -676,31 +675,30 @@ a{color:inherit;text-decoration:none}
 
     <div class="section-row"><span class="section-num">06</span><span class="section-title">Video analysis &amp; scouting</span><div class="section-line"></div></div>
     <div class="cards-grid">
-      <div class="card" data-layers="analytics output" data-who="hs college pro"
-        data-name="Hudl Assist" data-tagline="Expert human game breakdown"
-        data-icon-bg="#eeedfe" data-icon-color="#534ab7"
-        data-url="https://www.hudl.com/products/assist"
-        data-func-pills='<span class="lp lp-analytics">Analytics</span><span class="lp lp-output">Output</span>'
-        data-sem-pills='<span class="lp lp-videotagged">Video / Tagged</span>'
-        data-who-html='<span class="who">Youth</span><span class="who on">High school</span><span class="who on">College</span><span class="who on">Pro</span><span class="who">Olympic</span>'
-        data-features="Receives footage directly from Hudl Focus — no separate submission step needed for Focus users|Human analysts tag every play 24/7, delivering complete results within 24 hours of game completion|35+ data points per game: lineup efficiency, shot charts, turnovers, transition, defensive ratings, and more|Every stat is hyperlinked directly to its exact video clip for instant one-click coaching review|Automatic athlete highlight playlists generated from tagged data without any additional staff work"
-        data-usedby="10,000+ high school programs (Hudl published figure)|NCAA programs across all divisions"
-        data-insight="Assist sits between Focus (capture) and Sportscode (custom analysis) in the Hudl pipeline. Most high school and mid-major college programs rely on Assist as their entire analytics engine — it removes the need for a dedicated video coordinator by automating the tagging layer completely. For ADs, it's the most impactful investment at the developing and established program tiers."
-        data-interchangeable="SportsVisio (for programs without Hudl Focus cameras), Hoopsalytics (budget alternative)" data-pairs-with="Hudl Focus Indoor/Outdoor (capture source), Hudl Sportscode (custom analysis on top of Assist data)" data-scales-to="Hudl Sportscode (when custom tagging workflows and deeper customization are needed)">
+      <div class="card" data-layers="capture analytics" data-who="pro olympic"
+        data-name="Second Spectrum" data-tagline="Official data tracking provider — NBA, WNBA, Premier League, EFL &amp; MLS"
+        data-icon-bg="#e6f1fb" data-icon-color="#185fa5"
+        data-url="https://www.secondspectrum.com"
+        data-func-pills='<span class="lp lp-capture">Capture</span><span class="lp lp-analytics">Analytics</span>'
+        data-sem-pills='<span class="lp lp-optical">Optical / Visual</span><span class="lp lp-spatial">Spatial / Play-type</span>'
+        data-who-html='<span class="who">Youth</span><span class="who">High school</span><span class="who">College</span><span class="who on">Pro</span><span class="who on">Olympic</span>'
+        data-features="NBA official team basketball analytics provider and official League Pass augmentation provider since 2023-24 (NBA press release, March 2023)|WNBA official optical tracking provider since 2024 — first women's pro league in the U.S. with leaguewide 3D tracking (WNBA press release, March 2024)|Official data tracking and analytics provider for the Premier League, EFL, and MLS (Genius Sports acquisition press release, May 2021; Broadcast Now, Nov 2022)|Also used by Danish Superliga for broadcast augmentation and performance analysis (Broadcast Now, Nov 2022)|Genius Sports company — acquired for $200M in 2021 (Sportico, May 2021)"
+        data-usedby="All 30 NBA teams — official team analytics provider (NBA press release, March 2023)|All WNBA teams — official optical tracking provider since 2024 (WNBA press release, March 2024)|Premier League and EFL — official data tracking provider (Broadcast Now, Nov 2022; Sportico, June 2023)|MLS — official data tracking and analytics provider (Genius Sports press release, May 2021)|Danish Superliga (Broadcast Now, Nov 2022)"
+        data-insight="Second Spectrum's role in the NBA ecosystem is more nuanced than 'replaced by Hawk-Eye.' While Hawk-Eye took over in-game optical tracking in 2023-24, Second Spectrum simultaneously expanded — becoming the WNBA's first-ever optical tracking provider in 2024 and continuing as the NBA's official team analytics and broadcast augmentation layer. For ADs and GMs, the distinction matters: Hawk-Eye captures the data; Second Spectrum helps translate it into coaching tools and fan-facing content."
+        data-interchangeable="Hawk-Eye (handles in-game NBA optical tracking — different roles, not direct substitutes)" data-pairs-with="Synergy Sports (analytics layer), Sportradar (data distribution)" data-scales-to="—">
         <div class="card-top">
           <div class="card-brand">
-            <div class="card-icon" style="background:#eeedfe"><svg width="16" height="16" fill="none" stroke="#534ab7" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div>
-            <div><div class="card-name">Hudl Assist</div><div class="card-tagline">Expert human game breakdown</div></div>
+            <div class="card-icon" style="background:#e6f1fb"><svg width="16" height="16" fill="none" stroke="#185fa5" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/></svg></div>
+            <div><div class="card-name">Second Spectrum</div><div class="card-tagline">Official data tracking — NBA, WNBA, Premier League, EFL &amp; MLS</div></div>
           </div>
           <div class="card-hint">tap <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
         </div>
-        <div class="layer-pills func-pills"><span class="lp lp-analytics">Analytics</span><span class="lp lp-output">Output</span></div>
-        <div class="layer-pills sem-pills" style="display:none"><span class="lp lp-videotagged">Video / Tagged</span></div>
-        <div class="who-row"><span class="who on">HS</span><span class="who on">College</span><span class="who on">Pro</span></div>
+        <div class="layer-pills func-pills"><span class="lp lp-capture">Capture</span><span class="lp lp-analytics">Analytics</span></div>
+        <div class="layer-pills sem-pills" style="display:none"><span class="lp lp-optical">Optical / Visual</span><span class="lp lp-spatial">Spatial / Play-type</span></div>
+        <div class="who-row"><span class="who on">Pro</span><span class="who on">Olympic</span></div>
         <div class="card-divider"></div>
         <div class="rel-row">
-          <div class="rel-item"><strong>Interchangeable with:</strong> SportsVisio, Hoopsalytics</div>
-          <div class="rel-item"><strong>Scales to:</strong> Hudl Sportscode</div>
+          <div class="rel-item"><strong>Pairs with:</strong> Synergy Sports, Sportradar</div>
         </div>
       </div>
 
@@ -728,6 +726,34 @@ a{color:inherit;text-decoration:none}
         <div class="card-divider"></div>
         <div class="rel-row">
           <div class="rel-item"><strong>Pairs with:</strong> FastModel, Catapult, Sportscode</div>
+        </div>
+      </div>
+
+      <div class="card" data-layers="analytics output" data-who="hs college pro"
+        data-name="Hudl Assist" data-tagline="Expert human game breakdown"
+        data-icon-bg="#eeedfe" data-icon-color="#534ab7"
+        data-url="https://www.hudl.com/products/assist"
+        data-func-pills='<span class="lp lp-analytics">Analytics</span><span class="lp lp-output">Output</span>'
+        data-sem-pills='<span class="lp lp-videotagged">Video / Tagged</span>'
+        data-who-html='<span class="who">Youth</span><span class="who on">High school</span><span class="who on">College</span><span class="who on">Pro</span><span class="who">Olympic</span>'
+        data-features="Receives footage directly from Hudl Focus — no separate submission step needed for Focus users|Human analysts tag every play 24/7, delivering complete results within 24 hours of game completion|35+ data points per game: lineup efficiency, shot charts, turnovers, transition, defensive ratings, and more|Every stat is hyperlinked directly to its exact video clip for instant one-click coaching review|Automatic athlete highlight playlists generated from tagged data without any additional staff work"
+        data-usedby="10,000+ high school programs (Hudl published figure)|NCAA programs across all divisions"
+        data-insight="Assist sits between Focus (capture) and Sportscode (custom analysis) in the Hudl pipeline. Most high school and mid-major college programs rely on Assist as their entire analytics engine — it removes the need for a dedicated video coordinator by automating the tagging layer completely. For ADs, it's the most impactful investment at the developing and established program tiers."
+        data-interchangeable="SportsVisio (for programs without Hudl Focus cameras), Hoopsalytics (budget alternative)" data-pairs-with="Hudl Focus Indoor/Outdoor (capture source), Hudl Sportscode (custom analysis on top of Assist data)" data-scales-to="Hudl Sportscode (when custom tagging workflows and deeper customization are needed)">
+        <div class="card-top">
+          <div class="card-brand">
+            <div class="card-icon" style="background:#eeedfe"><svg width="16" height="16" fill="none" stroke="#534ab7" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div>
+            <div><div class="card-name">Hudl Assist</div><div class="card-tagline">Expert human game breakdown</div></div>
+          </div>
+          <div class="card-hint">tap <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="layer-pills func-pills"><span class="lp lp-analytics">Analytics</span><span class="lp lp-output">Output</span></div>
+        <div class="layer-pills sem-pills" style="display:none"><span class="lp lp-videotagged">Video / Tagged</span></div>
+        <div class="who-row"><span class="who on">HS</span><span class="who on">College</span><span class="who on">Pro</span></div>
+        <div class="card-divider"></div>
+        <div class="rel-row">
+          <div class="rel-item"><strong>Interchangeable with:</strong> SportsVisio, Hoopsalytics</div>
+          <div class="rel-item"><strong>Scales to:</strong> Hudl Sportscode</div>
         </div>
       </div>
 
@@ -1102,7 +1128,10 @@ function switchPage(id,btn){
   document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
   if(btn)btn.classList.add('active');
-  window.scrollTo(0,0);
+  document.documentElement.classList.add('instant-scroll');
+  document.documentElement.scrollTop=0;
+  document.body.scrollTop=0;
+  requestAnimationFrame(()=>document.documentElement.classList.remove('instant-scroll'));
 }
 
 let currentView='functional';
@@ -1189,7 +1218,51 @@ function buildOverlay(d){
   `;
 }
 
+// Build expanded detail block from card data
+function buildExpandedDetail(d){
+  const features=(d.features||'').split('|').filter(Boolean);
+  const usedByRaw=d.usedby||'';
+  const usedByChips=usedByRaw.split('|').filter(Boolean).map(u=>`<span class="card-exp-chip">${u.trim()}</span>`).join('');
+  const interchangeable=d.interchangeable&&d.interchangeable.trim()&&d.interchangeable!=='—'?`<div class="rel-item"><strong>Interchangeable with:</strong> ${d.interchangeable}</div>`:'';
+  const pairsWith=d.pairsWith&&d.pairsWith.trim()&&d.pairsWith!=='—'?`<div class="rel-item"><strong>Pairs with:</strong> ${d.pairsWith}</div>`:'';
+  const scalesTo=d.scalesTo&&d.scalesTo.trim()&&d.scalesTo!=='—'?`<div class="rel-item"><strong>Scales to:</strong> ${d.scalesTo}</div>`:'';
+  return `
+    <div class="card-exp-divider"></div>
+    ${usedByChips?`<div><div class="card-exp-label">Used by</div><div class="card-exp-usedby">${usedByChips}</div></div>`:''}
+    <div>
+      <div class="card-exp-label">What it does</div>
+      <ul class="card-exp-features">${features.map(f=>`<li>${f}</li>`).join('')}</ul>
+    </div>
+    <div class="card-exp-insight">
+      <div class="card-exp-insight-label">In practice</div>
+      <div class="card-exp-insight-text">${d.insight||''}</div>
+    </div>
+    ${interchangeable||pairsWith||scalesTo?`<div><div class="card-exp-label">Tool relationships</div><div class="rel-row">${interchangeable}${pairsWith}${scalesTo}</div></div>`:''}
+  `;
+}
+
+// Inject expanded detail blocks into every card on load
+document.querySelectorAll('.card').forEach(card=>{
+  const detail=document.createElement('div');
+  detail.className='card-expanded-detail';
+  detail.innerHTML=buildExpandedDetail(card.dataset);
+  card.appendChild(detail);
+});
+
+// EXPAND ALL TOGGLE
+let expandedMode=false;
+function toggleExpandAll(){
+  expandedMode=!expandedMode;
+  const btn=document.getElementById('expand-toggle');
+  document.querySelectorAll('.cards-grid').forEach(grid=>grid.classList.toggle('expanded-mode',expandedMode));
+  if(btn){
+    btn.classList.toggle('active',expandedMode);
+    btn.textContent=expandedMode?'collapse all':'expand all';
+  }
+}
+
 function openOverlay(card){
+  if(expandedMode)return;
   overlayContent.innerHTML=buildOverlay(card.dataset);
   overlay.classList.add('open');
   document.body.style.overflow='hidden';
